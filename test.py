@@ -65,6 +65,8 @@ netG_B2A = Generator_F2S(opt.output_nc, opt.input_nc)
 if opt.cuda:
     netG_A2B.to(device)
     netG_B2A.to(device)
+    netG_A2B = torch.nn.DataParallel(netG_A2B)
+    netG_B2A = torch.nn.DataParallel(netG_B2A)
 
 # Load state dicts
 netG_A2B.load_state_dict(torch.load(opt.generator_A2B))
