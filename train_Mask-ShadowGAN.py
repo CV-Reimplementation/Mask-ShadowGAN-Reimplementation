@@ -34,8 +34,8 @@ warnings.filterwarnings("ignore")
 parser = argparse.ArgumentParser()
 parser.add_argument('--epoch', type=int, default=0, help='starting epoch')
 parser.add_argument('--n_epochs', type=int, default=200, help='number of epochs of training')
-parser.add_argument('--batchSize', type=int, default=4, help='size of the batches')
-parser.add_argument('--dataroot', type=str, default='datasets/horse2zebra/', help='root directory of the dataset')
+parser.add_argument('--batchSize', type=int, default=2, help='size of the batches')
+parser.add_argument('--dataroot', type=str, default='../RDD/', help='root directory of the dataset')
 parser.add_argument('--lr', type=float, default=0.0002, help='initial learning rate')
 parser.add_argument('--decay_epoch', type=int, default=100,
 					help='epoch to start linearly decaying the learning rate to 0')
@@ -53,13 +53,15 @@ opt = parser.parse_args()
 if __name__ == '__main__':
 
 	# USR
-	opt.dataroot = '/data1/cxh/Shadoc/train'
+	opt.dataroot = '../RDD/train'
 	# SRD
 	#opt.dataroot = '/home/xwhu/dataset/SRD'
 	# ISTD
 	#opt.dataroot = '/home/xwhu/dataset/ISTD'
 
-	opt.log_path = os.path.join('output', 'Shadoc.txt')
+	os.makedirs('output', exist_ok=True)
+
+	opt.log_path = os.path.join('output', 'RDD.txt')
 
 	if torch.cuda.is_available():
 		opt.cuda = True
